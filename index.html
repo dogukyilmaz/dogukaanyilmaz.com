@@ -10,9 +10,12 @@ font-family: 'Montserrat', sans-serif; -->
       @import url("https://fonts.googleapis.com/css2?family=Montez&family=Montserrat:wght@100&display=swap");
 
       * {
-        margin: 0;
-        padding: 0;
         box-sizing: border-box;
+        color: #454845;
+        font-weight: 700;
+        font-family: "Montserrat", "Helvetica", sans-serif;
+        padding: 0;
+        margin: 0;
       }
 
       *::selection {
@@ -26,15 +29,6 @@ font-family: 'Montserrat', sans-serif; -->
         display: flex;
         justify-content: center;
         align-items: center;
-      }
-      * {
-        box-sizing: border-box;
-        color: #454845;
-        font-weight: 700;
-        font-family: "Montserrat", "Helvetica", sans-serif;
-        /* font-size: 1.2rem; */
-        padding: 0;
-        margin: 0;
       }
 
       #container {
@@ -53,9 +47,9 @@ font-family: 'Montserrat', sans-serif; -->
         transition: all ease-in-out 0.5s;
         margin-top: 2rem;
         text-align: center;
-        width: 550px;
         position: absolute;
         bottom: 100px;
+        padding: 1rem;
       }
 
       #button:hover {
@@ -63,16 +57,12 @@ font-family: 'Montserrat', sans-serif; -->
         transition: all ease 0.3s;
       }
 
-      #button {
-        padding: 1rem;
-      }
-
       #greetings,
       #output {
         background: rgba(255, 255, 255, 0.3);
         color: black;
         position: absolute;
-        top: 200px;
+        top: 20%;
         padding: 0 10px;
         font-size: 1.2rem;
         border-radius: 10px;
@@ -81,9 +71,28 @@ font-family: 'Montserrat', sans-serif; -->
       #output {
         background: rgba(0, 0, 0, 0.1);
         color: white;
-        top: 500px;
+        top: 50%;
         padding: 0 10px;
         font-size: 1.2rem;
+      }
+
+      #alias {
+        color: black;
+        position: absolute;
+        bottom: 1%;
+        right: 1%;
+      }
+
+      @media screen and (max-width: 360px){
+        #button {
+          padding: .5rem;
+          font-size: .9rem;
+        }
+      }
+      @media screen and (max-width: 320px){
+        #button {
+          font-size: .8rem;
+        }
       }
     </style>
   </head>
@@ -92,6 +101,7 @@ font-family: 'Montserrat', sans-serif; -->
       <h4 id="greetings">Hello, friend.</h4>
       <div id="output">See u soon.</div>
       <div id="button" onclick="generate()"></div>
+      <div id="alias">douscriptist &#169</div>
     </div>
 
     <script>
