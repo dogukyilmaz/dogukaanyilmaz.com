@@ -1,8 +1,6 @@
-import { useLocaleContext } from "context/LocaleContext";
 import useTranslation from "hooks/useTranslation";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { languageNames } from "translations/config";
 
 const Navbar = () => {
   const { pathname } = useRouter();
