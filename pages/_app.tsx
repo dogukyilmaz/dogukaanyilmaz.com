@@ -1,8 +1,27 @@
 import type { AppProps /*, AppContext */ } from "next/app";
-import "../styles/globals.css";
+import { ChakraProvider, cookieStorageManager, localStorageManager } from "@chakra-ui/react";
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+import { theme } from "styles/theme";
+import "../styles/globals.css";
+import { Chakra } from "components/ChakraProvider";
+
+function MyApp({ Component, pageProps, cookies }: AppProps | any) {
+  return (
+    <Chakra
+      theme={theme}
+      colorModeManager={typeof cookies === "string" ? cookieStorageManager(cookies) : localStorageManager}
+    >
+      <Component {...pageProps} />
+    </Chakra>
+  );
 }
+
+MyApp.getInitialProps = ({ req }: any) => {
+  return {
+    // first time users will not have any cookies and you may not return
+    // undefined here, hence ?? is necessary
+    cookies: req?.headers.cookie ?? "",
+  };
+};
 
 export default MyApp;
