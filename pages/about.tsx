@@ -1,8 +1,8 @@
 import Layout from "components/Layout";
-import useTranslation from "hooks/useTranslation";
+import useLocale from "hooks/useLocale";
 
 const About = () => {
-  const { t } = useTranslation();
+  const { t } = useLocale();
   return (
     <Layout pageTitle="About">
       <h1>{t("aboutme")}</h1>

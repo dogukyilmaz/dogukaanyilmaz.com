@@ -1,10 +1,10 @@
 import React, { useEffect, useLayoutEffect } from "react";
 import Layout from "components/Layout";
-import useTranslation from "hooks/useTranslation";
+import useLocale from "hooks/useLocale";
 import { Button, ButtonGroup, ChakraProvider, Heading, useColorMode } from "@chakra-ui/react";
 
 export default function Home({ cookies }: any) {
-  const { t } = useTranslation();
+  const { t } = useLocale();
 
   return (
     <Layout pageTitle="Welcome">
