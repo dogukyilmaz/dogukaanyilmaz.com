@@ -1,9 +1,8 @@
-import React from "react";
+import { Box, Container, Flex, Spacer } from "@chakra-ui/react";
 import Header from "components/Header";
 import Navbar from "components/Navbar";
 import Footer from "components/Footer";
-import styles from "../styles/Home.module.css";
-import { Box, Container, Flex, Spacer } from "@chakra-ui/react";
+import LocaleSelector from "./LocaleSelector";
 
 interface LayoutProps {
   pageTitle?: string;
@@ -16,6 +15,7 @@ const Layout: React.FC<LayoutProps> = ({ children, pageTitle = "Hello, friend." 
       <Box h={35} bg="blue.500">
         <header>
           <Navbar />
+          <LocaleSelector />
         </header>
       </Box>
       <Box flex={1} bg="green.500">
