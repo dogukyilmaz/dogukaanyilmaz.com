@@ -1,22 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import Layout from "components/Layout";
 import useTranslation from "hooks/useTranslation";
-import { Button, ButtonGroup, useColorMode } from "@chakra-ui/react";
-import { Chakra } from "components/ChakraProvider";
+import { Button, ButtonGroup, ChakraProvider, Heading, useColorMode } from "@chakra-ui/react";
 
 export default function Home({ cookies }: any) {
   const { t } = useTranslation();
-  const { colorMode, toggleColorMode } = useColorMode();
+
   return (
-    <Chakra cookies={cookies}>
-      <Layout title="Welcome">
-        <h1>{t("hello")}</h1>
-        <Button colorScheme="blue" onClick={toggleColorMode}>
-          {colorMode === "light" ? "🌙" : "🌞"}
-        </Button>
-      </Layout>
-    </Chakra>
+    <Layout pageTitle="Welcome">
+      <Heading as="h3" size="lg">
+        (lg) In love with React & Next
+      </Heading>
+      <h1>{t("hello")}</h1>
+    </Layout>
   );
 }
-
-export { getServerSideProps } from "components/ChakraProvider";

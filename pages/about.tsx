@@ -4,7 +4,7 @@ import useTranslation from "hooks/useTranslation";
 const About = () => {
   const { t } = useTranslation();
   return (
-    <Layout title="About">
+    <Layout pageTitle="About">
       <h1>{t("aboutme")}</h1>
     </Layout>
   );
