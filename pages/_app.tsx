@@ -3,16 +3,15 @@ import { ChakraProvider, cookieStorageManager, localStorageManager } from "@chak
 
 import { theme } from "styles/theme";
 import "../styles/globals.css";
-import { Chakra } from "components/ChakraProvider";
 
 function MyApp({ Component, pageProps, cookies }: AppProps | any) {
   return (
-    <Chakra
+    <ChakraProvider
       theme={theme}
       colorModeManager={typeof cookies === "string" ? cookieStorageManager(cookies) : localStorageManager}
     >
       <Component {...pageProps} />
-    </Chakra>
+    </ChakraProvider>
   );
 }
 
