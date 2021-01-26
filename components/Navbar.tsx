@@ -1,7 +1,22 @@
-import { Button, useColorMode } from "@chakra-ui/react";
+import { Box, Button, HStack, Tag, TagLabel, useColorMode } from "@chakra-ui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import useLocale from "hooks/useLocale";
+import { EmailIcon, LinkIcon, SpinnerIcon, StarIcon } from "@chakra-ui/icons";
+
+const RouteIcon = (route: string) => {
+  if (route === "home") {
+    return <EmailIcon mr={2} />;
+  } else if (route === "about") {
+    return <SpinnerIcon mr={2} />;
+  } else if (route === "theming") {
+    return <StarIcon mr={2} />;
+  } else if (route === "contact") {
+    return <EmailIcon mr={2} />;
+  } else {
+    return <LinkIcon mr={2} />;
+  }
+};
 
 const Navbar = () => {
   const { pathname } = useRouter();
@@ -10,21 +25,28 @@ const Navbar = () => {
 
   return (
     <nav>
-      <Link href="/">
-        <a style={pathname === "/" ? { color: "white" } : {}}>{t("home")}</a>
-      </Link>{" "}
-      |{" "}
-      <Link href="/about">
-        <a style={pathname === "/about" ? { color: "white" } : {}}>{t("about")}</a>
-      </Link>{" "}
-      |{" "}
-      <Link href="/theming">
-        <a style={pathname === "/theming" ? { color: "white" } : {}}>{t("theming")}</a>
-      </Link>
-      |{" "}
-      <Link href="/contact">
-        <a style={pathname === "/contact" ? { color: "white" } : {}}>{t("contact")}</a>
-      </Link>
+      <Box d="flex" justifyContent="center">
+        <HStack spacing={4}>
+          {["home", "about", "theming", "contact"].map((route, i) => (
+            <Link href={`/${route === "home" ? "" : route}`}>
+              <a>
+                <Tag
+                  mt={1}
+                  size="md"
+                  variant="outline"
+                  colorScheme="teal"
+                  color={pathname === `/${route === "home" ? "" : route}` ? "gray.200" : "inherit"}
+                  bgColor={pathname === `/${route === "home" ? "" : route}` ? "teal.500" : "inherit"}
+                  _hover={{ cursor: "pointer", background: "teal.800", color: "white" }}
+                >
+                  {RouteIcon(route)}
+                  <TagLabel>{t(`${route}`)}</TagLabel>
+                </Tag>
+              </a>
+            </Link>
+          ))}
+        </HStack>
+      </Box>
       <span style={{ position: "absolute", right: 10, top: "50%" }}>
         <Button colorScheme="blue" onClick={toggleColorMode}>
           {colorMode === "light" ? "🌙" : "🌞"}
