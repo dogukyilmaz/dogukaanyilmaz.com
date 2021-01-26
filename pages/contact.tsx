@@ -78,13 +78,13 @@ export default function Contact({ cookies }: any) {
           isClosable: true,
         });
       }
+      setSubmitted(false);
     }
   };
 
   const handlePostSubmit = () => {
     onClose();
     setForm({ name: "", email: "", message: "" });
-    setSubmitted(false);
     setRequested(true);
     localStorage.setItem("contact-request-sent", "true");
   };
