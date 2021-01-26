@@ -30,7 +30,17 @@ import {
 } from "@chakra-ui/react";
 import { EmailIcon, ArrowForwardIcon, CheckCircleIcon } from "@chakra-ui/icons";
 
-export default function Contact({ cookies }: any) {
+export async function getStaticProps() {
+  const URL = process.env.BASE_URL;
+
+  return {
+    props: {
+      URL,
+    },
+  };
+}
+
+export default function Contact({ URL }: any) {
   const { t } = useLocale();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
@@ -49,7 +59,7 @@ export default function Contact({ cookies }: any) {
     if (validateField()) {
       setSubmitted(true);
       try {
-        const { data } = await axios.post("http://localhost:3000/api/mail", form);
+        const { data } = await axios.post(`${URL}/api/mail`, form);
         console.log(data);
         if (data.success) {
           toast({
