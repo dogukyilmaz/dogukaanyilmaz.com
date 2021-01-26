@@ -10,15 +10,25 @@ export const languageNames: any = {
   ar: "عربى",
 };
 
+const capitalize = (s: String) => {
+  return s
+    .split(" ")
+    .map(([first, ...rest]: String) => `${first.toUpperCase()}${rest.join("")}`)
+    .join(" ");
+};
+
 const useLocale = () => {
   const { locale, defaultLocale, locales, pathname, push } = useRouter();
   const toast = useToast();
 
   const t = (key: string) => {
+    let tempKey = "";
     if (!strings[locale!][key]) {
       console.warn(`Translation '${key}' for locale '${locale}' not found.`);
+      tempKey = capitalize(key);
+      console.log(capitalize(key));
     }
-    return strings[locale!][key] || strings[defaultLocale!][key] || "";
+    return strings[locale!][key] || strings[defaultLocale!][key] || tempKey || "";
   };
 
   const setLocale = (lang: string) => {

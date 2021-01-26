@@ -8,6 +8,7 @@ const strings: any = {
     theming: "Theme",
     langNotFound: "is not accessible right now.",
     language: "Language",
+    // contact: "Contact",
   },
   fr: {
     lang: "Français",
