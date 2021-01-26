@@ -1,16 +1,16 @@
 import { Box } from "@chakra-ui/react";
 import Layout from "components/Layout";
-import useLocale from "hooks/useLocale";
 
-const About = () => {
-  const { t } = useLocale();
+interface Props {}
+
+const theming = (props: Props) => {
   return (
-    <Layout pageTitle="About">
+    <Layout>
       <Box d="flex" justifyContent="center" alignItems="center" h="95vh">
-        <h1>{t("aboutme")}</h1>
+        <Box w={200} h="15vh" bg="teal.500" boxShadow="md" rounded="lg" />
       </Box>
     </Layout>
   );
 };
 
-export default About;
+export default theming;

@@ -1,12 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import Layout from "components/Layout";
-import useTranslation from "hooks/useTranslation";
+import useLocale from "hooks/useLocale";
+import { Box, Button, ButtonGroup, ChakraProvider, Heading, useColorMode } from "@chakra-ui/react";
 
-export default function Home() {
-  const { t } = useTranslation();
+export default function Home({ cookies }: any) {
+  const { t } = useLocale();
+
   return (
-    <Layout title="Welcome">
-      <h1>{t("hello")}</h1>
+    <Layout pageTitle="Welcome">
+      <Box d="flex" justifyContent="center" alignItems="center" h="95vh">
+        {/* <Heading as="h3" size="lg">
+        (lg) In love with React & Next
+      </Heading> */}
+        <h1>{t("hello")}</h1>
+      </Box>
     </Layout>
   );
 }
