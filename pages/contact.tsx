@@ -28,7 +28,7 @@ import {
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
-import { EmailIcon, ArrowForwardIcon } from "@chakra-ui/icons";
+import { EmailIcon, ArrowForwardIcon, CheckCircleIcon } from "@chakra-ui/icons";
 
 export default function Contact({ cookies }: any) {
   const { t } = useLocale();
@@ -37,6 +37,13 @@ export default function Contact({ cookies }: any) {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [isSubmitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<any>([]);
+  const [isRequested, setRequested] = useState(false);
+
+  useLayoutEffect(() => {
+    if (handlePreCheck()) {
+      setRequested(true);
+    }
+  }, []);
 
   const handleSubmit = async () => {
     if (validateField()) {
@@ -57,9 +64,7 @@ export default function Contact({ cookies }: any) {
             duration: 4000,
             isClosable: true,
           });
-          onClose();
-          setForm({ name: "", email: "", message: "" });
-          setSubmitted(false);
+          handlePostSubmit();
         } else {
           throw new Error("Internal error. Try again later.");
         }
@@ -74,6 +79,18 @@ export default function Contact({ cookies }: any) {
         });
       }
     }
+  };
+
+  const handlePostSubmit = () => {
+    onClose();
+    setForm({ name: "", email: "", message: "" });
+    setSubmitted(false);
+    setRequested(true);
+    localStorage.setItem("contact-request-sent", "true");
+  };
+
+  const handlePreCheck = () => {
+    return localStorage.getItem("contact-request-sent") || null;
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -111,11 +128,17 @@ export default function Contact({ cookies }: any) {
     <Layout pageTitle="Contact">
       <Box d="flex" justifyContent="center" alignItems="center" h="95vh">
         <Stack direction="row" spacing={4}>
-          <Button leftIcon={<EmailIcon />} colorScheme="teal" variant="solid">
+          {/* <Button leftIcon={<EmailIcon />} colorScheme="teal" variant="solid">
             Email
-          </Button>
-          <Button rightIcon={<ArrowForwardIcon />} colorScheme="teal" variant="outline" onClick={onOpen}>
-            Contact Me
+          </Button> */}
+          <Button
+            rightIcon={isRequested ? <CheckCircleIcon /> : <ArrowForwardIcon />}
+            colorScheme="teal"
+            variant={isRequested ? "solid" : "outline"}
+            onClick={onOpen}
+            disabled={isRequested}
+          >
+            {isRequested ? "Request Sent" : "Contact Me"}
           </Button>
         </Stack>
       </Box>
