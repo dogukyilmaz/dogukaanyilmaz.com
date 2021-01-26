@@ -6,7 +6,9 @@ interface Props {}
 const theming = (props: Props) => {
   return (
     <Layout>
-      <Box w={200} h="15vh" bg="yellow.100" boxShadow="md" rounded="lg" />
+      <Box d="flex" justifyContent="center" alignItems="center" h="95vh">
+        <Box w={200} h="15vh" bg="teal.500" boxShadow="md" rounded="lg" />
+      </Box>
     </Layout>
   );
 };

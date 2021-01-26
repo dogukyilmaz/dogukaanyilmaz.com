@@ -3,10 +3,11 @@ import { useRouter } from "next/router";
 
 const Footer = () => {
   const { locale } = useRouter();
+
   return (
     <Center>
-      <Text>{new Date().toLocaleString(locale)}</Text>
-      <Text marginLeft="auto">
+      <Text ml={2}>{new Date().toLocaleString(locale)}</Text>
+      <Text marginLeft="auto" mr={2}>
         {/* <a href="" target="_blank" rel="noopener noreferrer"> */}
         douscriptist &copy;
         {/* </a> */}
