@@ -21,6 +21,10 @@ const Navbar = () => {
       <Link href="/theming">
         <a style={pathname === "/theming" ? { color: "white" } : {}}>{t("theming")}</a>
       </Link>
+      |{" "}
+      <Link href="/contact">
+        <a style={pathname === "/contact" ? { color: "white" } : {}}>{t("contact")}</a>
+      </Link>
       <span style={{ position: "absolute", right: 10, top: "50%" }}>
         <Button colorScheme="blue" onClick={toggleColorMode}>
           {colorMode === "light" ? "🌙" : "🌞"}
