@@ -28,7 +28,7 @@ const Navbar = () => {
       <Box d="flex" justifyContent="center">
         <HStack spacing={4}>
           {["home", "about", "theming", "contact"].map((route, i) => (
-            <Link href={`/${route === "home" ? "" : route}`}>
+            <Link href={`/${route === "home" ? "" : route}`} key={i}>
               <a>
                 <Tag
                   mt={1}
