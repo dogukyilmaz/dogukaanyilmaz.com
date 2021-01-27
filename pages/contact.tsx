@@ -30,16 +30,6 @@ import {
 } from "@chakra-ui/react";
 import { EmailIcon, ArrowForwardIcon, CheckCircleIcon } from "@chakra-ui/icons";
 
-// export async function getStaticProps() {
-//   const URL = "";
-
-//   return {
-//     props: {
-//       URL,
-//     },
-//   };
-// }
-
 export default function Contact() {
   const { t } = useLocale();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -100,7 +90,7 @@ export default function Contact() {
   };
 
   const handlePreCheck = () => {
-    // return localStorage.getItem("contact-request-sent") || null;
+    return localStorage.getItem("contact-request-sent") || null;
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
