@@ -7,7 +7,7 @@ export default function Home({ cookies }: any) {
   const { t } = useLocale();
 
   return (
-    <Layout pageTitle="Welcome">
+    <Layout pageTitle={t("welcome")}>
       <Box d="flex" justifyContent="center" alignItems="center" h="95vh">
         {/* <Heading as="h3" size="lg">
         (lg) In love with React & Next

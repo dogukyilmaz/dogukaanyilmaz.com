@@ -125,7 +125,7 @@ export default function Contact() {
   };
 
   return (
-    <Layout pageTitle="Contact">
+    <Layout pageTitle={t("contact")}>
       <Box d="flex" justifyContent="center" alignItems="center" h="95vh">
         <Stack direction="row" spacing={4}>
           {/* <Button leftIcon={<EmailIcon />} colorScheme="teal" variant="solid">
@@ -138,23 +138,23 @@ export default function Contact() {
             onClick={onOpen}
             disabled={isRequested}
           >
-            {isRequested ? "Request Sent" : "Contact Me"}
+            {isRequested ? t("requestSent") : t("contactMe")}
           </Button>
         </Stack>
       </Box>
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Request Contact</ModalHeader>
+          <ModalHeader>{t("requestForm")}</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl id="name" isRequired>
-              <FormLabel>Name</FormLabel>
+              <FormLabel>{t("name")}</FormLabel>
               <Input
                 isInvalid={errors.find((item: any) => item.key === "name")}
                 focusBorderColor="teal.500"
                 value={form.name}
-                placeholder="Name"
+                placeholder={t("name")}
                 disabled={isSubmitted}
                 onChange={handleChange}
               />
@@ -164,11 +164,12 @@ export default function Contact() {
             </FormControl>
 
             <FormControl id="email" mt={4} isRequired>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>{t("email")}</FormLabel>
               <Input
                 isInvalid={errors.find((item: any) => item.key === "email")}
                 focusBorderColor="teal.500"
                 value={form.email}
+                placeholder={t("email")}
                 type="email"
                 disabled={isSubmitted}
                 onChange={handleChange}
@@ -179,12 +180,12 @@ export default function Contact() {
             </FormControl>
 
             <FormControl id="message" mt={4} isRequired>
-              <FormLabel>Message</FormLabel>
+              <FormLabel>{t("message")}</FormLabel>
               <Textarea
                 isInvalid={errors.find((item: any) => item.key === "message")}
                 focusBorderColor="teal.500"
                 value={form.message}
-                placeholder="Message"
+                placeholder={t("message")}
                 disabled={isSubmitted}
                 size="sm"
                 resize="none"
@@ -196,26 +197,26 @@ export default function Contact() {
             </FormControl>
 
             <FormControl as="fieldset" id="emerg" mt={4} disabled={isSubmitted}>
-              <FormLabel as="legend">Emergency</FormLabel>
+              <FormLabel as="legend">{t("priority")}</FormLabel>
               <RadioGroup defaultValue="low">
                 <HStack spacing="24px">
                   <Radio colorScheme="teal" value="low">
-                    Low
+                    {t("low")}
                   </Radio>
                   <Radio colorScheme="teal" value="medium">
-                    Medium
+                    {t("medium")}
                   </Radio>
                   <Radio colorScheme="teal" value="high">
-                    High
+                    {t("high")}
                   </Radio>
                 </HStack>
               </RadioGroup>
-              <FormHelperText>Select if necessity.</FormHelperText>
+              <FormHelperText>{t("priorityMessage")}</FormHelperText>
             </FormControl>
           </ModalBody>
           <ModalFooter>
             <Button disabled={isSubmitted} onClick={onClose} colorScheme="red" mr={3} variant="ghost">
-              Cancel
+              {t("cancel")}
             </Button>
             <Button
               isLoading={isSubmitted}
@@ -223,7 +224,7 @@ export default function Contact() {
               variant={isSubmitted ? "solid" : "outline"}
               onClick={handleSubmit}
             >
-              Send
+              {t("send")}
             </Button>
           </ModalFooter>
         </ModalContent>

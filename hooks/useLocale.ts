@@ -10,6 +10,14 @@ export const languageNames: any = {
   ar: "عربى",
 };
 
+export const languageKeys: any = {
+  en: "english",
+  tr: "turkish",
+  de: "german",
+  fr: "french",
+  ar: "arabic",
+};
+
 const capitalize = (s: String) => {
   return s
     .split(" ")
@@ -36,8 +44,8 @@ const useLocale = () => {
       push(pathname, pathname, { locale: lang });
     } else {
       toast({
-        title: `${t("language")}: ${lang.toUpperCase()}`,
-        description: `${languageNames[lang]} ${t("langNotFound")}`,
+        title: `${t("language")}: ${languageNames[lang]}`,
+        description: `${t(languageKeys[lang])} ${t("langNotFound")}`,
         status: "info",
         position: "top-left",
         duration: 3000,
