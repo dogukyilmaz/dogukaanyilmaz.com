@@ -5,17 +5,19 @@ import useLocale from "hooks/useLocale";
 import { EmailIcon, LinkIcon, SpinnerIcon, StarIcon } from "@chakra-ui/icons";
 
 const RouteIcon = (route: string) => {
+  let Icon;
   if (route === "home") {
-    return <EmailIcon mr={2} />;
+    Icon = EmailIcon;
   } else if (route === "about") {
-    return <SpinnerIcon mr={2} />;
+    Icon = SpinnerIcon;
   } else if (route === "theming") {
-    return <StarIcon mr={2} />;
+    Icon = StarIcon;
   } else if (route === "contact") {
-    return <EmailIcon mr={2} />;
+    Icon = EmailIcon;
   } else {
-    return <LinkIcon mr={2} />;
+    Icon = LinkIcon;
   }
+  return <Icon mr={2} />;
 };
 
 const Navbar = () => {
