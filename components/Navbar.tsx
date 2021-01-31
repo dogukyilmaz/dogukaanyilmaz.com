@@ -10,7 +10,7 @@ const IconEnum = {
   about: SpinnerIcon,
   theming: StarIcon,
   contact: LinkIcon,
-  // apps: SettingsIcon,
+  apps: SettingsIcon,
 } as const;
 
 const Navbar = () => {
