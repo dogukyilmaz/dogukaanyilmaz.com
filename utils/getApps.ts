@@ -1,5 +1,5 @@
 import puppeteer from "puppeteer";
-const path = "./public";
+const path = "./public/images";
 
 type App = {
   url: string;
