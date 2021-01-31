@@ -1,10 +1,31 @@
 import puppeteer from "puppeteer";
-
 const path = "./public";
 
-const apps = {
+type App = {
+  url: string;
+  name: string;
+};
+
+type Apps = {
+  [key: string]: App;
+};
+
+const apps: Apps = {
   dogukaanyilmaz: {
     url: "dogukaanyilmaz.com",
+    name: "dogukaanyilmaz",
+  },
+  dev: {
+    url: "dev.dogukaanyilmaz.com",
+    name: "dev",
+  },
+  currendashcy: {
+    url: "currendashcy.dogukaanyilmaz.com",
+    name: "currendashcy",
+  },
+  xox: {
+    url: "xox.dogukaanyilmaz.com",
+    name: "xox",
   },
 };
 
@@ -53,4 +74,22 @@ const screenshot = async (app: string, url: string, resolution: Resolution = { w
   await page.screenshot({ path: `${path}/${app}.png` });
 
   await browser.close();
+};
+
+export const getAllApps = async () => {
+  let done = [];
+  let undone = [];
+  for (let app in apps) {
+    const { url, name } = apps[app];
+    try {
+      await screenshot(name, url);
+      done.push({ url, name });
+      console.log(`${name}: ✅`);
+    } catch (error) {
+      console.log(`${name}: ❌`);
+      undone.push({ url, name });
+    }
+  }
+
+  return { done, undone };
 };
