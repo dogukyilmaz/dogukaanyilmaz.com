@@ -44,7 +44,7 @@ const apps: DouApps = {
 type Resolution = { w: number; h: number; scale: number };
 
 const screenshot = async (app: string, url: string, resolution: Resolution = { w: 1920, h: 1080, scale: 1 }) => {
-  const browser = await puppeteer.launch({ args: ["--no-sandbox"] });
+  const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
   await page.setViewport({
     width: resolution.w,
