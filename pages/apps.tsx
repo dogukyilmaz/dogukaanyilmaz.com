@@ -82,7 +82,7 @@ export async function getStaticProps() {
     props: {
       apps,
     },
-    revalidate: 60 * 60 * 24, // In seconds
+    revalidate: 60 * 60 * 24 * 7, // In seconds
   };
 }
 
