@@ -1,7 +1,9 @@
-import puppeteer from "puppeteer";
-// const path = "./public/images";
+// import puppeteer from "puppeteer";
 // import ppp from "puppeteer-core";
-import path from "path";
+import chromium from "chrome-aws-lambda";
+// import path from "path";
+
+const path = "./public/images";
 
 export type DouApp = {
   url: string;
@@ -46,9 +48,12 @@ const apps: DouApps = {
 type Resolution = { w: number; h: number; scale: number };
 
 const screenshot = async (app: string, url: string, resolution: Resolution = { w: 1920, h: 1080, scale: 1 }) => {
-  const browser = await puppeteer.launch({
-    args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
+  const browser = await chromium.puppeteer.launch({
+    args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
+    defaultViewport: chromium.defaultViewport,
+    executablePath: await chromium.executablePath,
     headless: true,
+    ignoreHTTPSErrors: true,
   });
   const page = await browser.newPage();
   await page.setViewport({
@@ -71,11 +76,7 @@ const screenshot = async (app: string, url: string, resolution: Resolution = { w
         });
       });
   }
-  await page.screenshot({
-    // path: path.join(__dirname, `public/images/${app}.png`),
-    path: `public/images/${app}.png`,
-    // `${path}/${app}.png`
-  });
+  await page.screenshot({ path: `${path}/${app}.png` });
   await browser.close();
 };
 
