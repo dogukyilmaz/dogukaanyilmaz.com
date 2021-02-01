@@ -1,6 +1,6 @@
 import puppeteer from "puppeteer";
 // const path = "./public/images";
-import ppp from "puppeteer-core";
+// import ppp from "puppeteer-core";
 import path from "path";
 
 export type DouApp = {
