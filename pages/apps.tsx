@@ -40,7 +40,7 @@ const Apps = ({ apps }: AppsProps) => {
                   <Image
                     boxSize="140px"
                     objectFit="cover"
-                    src={`/images/${app.name}.png`}
+                    src={`/${app.name}.png`}
                     alt={app.url}
                     borderRadius="0.375em"
                   />
