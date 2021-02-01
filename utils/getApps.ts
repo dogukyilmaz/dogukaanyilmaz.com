@@ -82,6 +82,7 @@ export const getAllApps = async () => {
     } catch (error) {
       console.log(`${name}: ❌`);
       undone.push({ url, name });
+      console.log(error);
     }
   }
 
