@@ -1,9 +1,4 @@
-// import puppeteer from "puppeteer";
-// import ppp from "puppeteer-core";
-import chromium from "chrome-aws-lambda";
-import pathm from "path";
-
-// const path = "./public/images";
+import puppeteer from "puppeteer";
 
 export type DouApp = {
   url: string;
@@ -48,13 +43,7 @@ const apps: DouApps = {
 type Resolution = { w: number; h: number; scale: number };
 
 const screenshot = async (app: string, url: string, resolution: Resolution = { w: 1920, h: 1080, scale: 1 }) => {
-  const browser = await chromium.puppeteer.launch({
-    args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
-    defaultViewport: chromium.defaultViewport,
-    executablePath: await chromium.executablePath,
-    headless: true,
-    ignoreHTTPSErrors: true,
-  });
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.setViewport({
     width: resolution.w,
@@ -65,7 +54,7 @@ const screenshot = async (app: string, url: string, resolution: Resolution = { w
   switch (app) {
     case apps.currendashcy.name:
       await new Promise((resolve) => setTimeout(resolve, 4000));
-      // await page.screenshot({ path: `public/${app}.png` });
+      // await page.screenshot({ path: `${path}/${app}.png` });
       break;
     case apps.xox.name:
       await page.evaluate(() => {
