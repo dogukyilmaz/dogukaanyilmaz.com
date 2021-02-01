@@ -50,7 +50,6 @@ export default function Contact() {
       setSubmitted(true);
       try {
         const { data } = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/mail`, form);
-        console.log(data);
         if (data.success) {
           toast({
             position: "top-right",

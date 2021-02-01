@@ -7,6 +7,5 @@ export const getRandomColor = () => {
 
   const bg = `${colors[c]}.${degrees[d]}`;
   const color = d < degrees.indexOf(400) ? "black" : "white";
-  console.log(bg, color, "ddsad");
   return { bg, color };
 };
