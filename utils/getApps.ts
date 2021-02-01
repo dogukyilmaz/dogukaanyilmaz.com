@@ -76,7 +76,7 @@ const screenshot = async (app: string, url: string, resolution: Resolution = { w
         });
       });
   }
-  await page.screenshot({ path: `public/images/${app}.png` });
+  await page.screenshot({ path: `public/${app}.png` });
   await browser.close();
 };
 
