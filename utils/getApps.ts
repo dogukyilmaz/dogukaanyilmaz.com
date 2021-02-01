@@ -1,16 +1,16 @@
 import puppeteer from "puppeteer";
 const path = "./public/images";
 
-type App = {
+export type DouApp = {
   url: string;
   name: string;
 };
 
-type Apps = {
-  [key: string]: App;
+export type DouApps = {
+  [key: string]: DouApp;
 };
 
-const apps: Apps = {
+const apps: DouApps = {
   dogukaanyilmaz: {
     url: "dogukaanyilmaz.com",
     name: "dogukaanyilmaz",
@@ -41,25 +41,6 @@ const apps: Apps = {
 //   await browser.close();
 // };
 
-// const ss = async () => {
-//   const browser = await puppeteer.launch();
-//   const page = await browser.newPage();
-//   await page.setViewport({
-//     width: 1920,
-//     height: 1080,
-//     deviceScaleFactor: 1,
-//   });
-//   await page.goto("http://douscriptist.me/");
-//   await page.evaluate(() => {
-//     document.querySelectorAll(".cell").forEach(((elem)) => elem.click());
-//   });
-//   await page.screenshot({ path: `${path}/douscriptist-1080p.png` });
-
-//   await browser.close();
-// };
-
-// const render = async () => await Promise.all([await ss(), await pdf()]);
-
 type Resolution = { w: number; h: number; scale: number };
 
 const screenshot = async (app: string, url: string, resolution: Resolution = { w: 1920, h: 1080, scale: 1 }) => {
@@ -71,8 +52,21 @@ const screenshot = async (app: string, url: string, resolution: Resolution = { w
     deviceScaleFactor: 1,
   });
   await page.goto(`http://${url}/`);
+  switch (app) {
+    case apps.currendashcy.name:
+      await new Promise((resolve) => setTimeout(resolve, 4000));
+      await page.screenshot({ path: `${path}/${app}.png` });
+      break;
+    case apps.xox.name:
+      await page.evaluate(() => {
+        const els: NodeListOf<Element> = document.querySelectorAll(".cell");
+        [0, 1, 4, 7, 8].forEach((n) => {
+          const elem = els[n] as HTMLElement;
+          elem.click();
+        });
+      });
+  }
   await page.screenshot({ path: `${path}/${app}.png` });
-
   await browser.close();
 };
 
