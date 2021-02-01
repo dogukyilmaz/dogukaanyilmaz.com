@@ -65,7 +65,7 @@ const screenshot = async (app: string, url: string, resolution: Resolution = { w
   switch (app) {
     case apps.currendashcy.name:
       await new Promise((resolve) => setTimeout(resolve, 4000));
-      await page.screenshot({ path: `public/${app}.png` });
+      // await page.screenshot({ path: `public/${app}.png` });
       break;
     case apps.xox.name:
       await page.evaluate(() => {
@@ -78,8 +78,6 @@ const screenshot = async (app: string, url: string, resolution: Resolution = { w
   }
   await page.screenshot({ path: `public/images/${app}.png` });
   await browser.close();
-  console.log("a", pathm.dirname("public"));
-  console.log("b", pathm.join(__dirname + "public/images/"));
 };
 
 export const getAllApps = async () => {
