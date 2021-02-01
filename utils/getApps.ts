@@ -59,7 +59,7 @@ const screenshot = async (app: string, url: string, resolution: Resolution = { w
     case apps.xox.name:
       await page.evaluate(() => {
         const els: NodeListOf<Element> = document.querySelectorAll(".cell");
-        [0, 1, 4, 7, 8].forEach((n) => {
+        [0, 1, 4, 6, 7].forEach((n) => {
           const elem = els[n] as HTMLElement;
           elem.click();
         });
