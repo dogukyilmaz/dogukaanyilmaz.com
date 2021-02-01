@@ -1,9 +1,9 @@
 // import puppeteer from "puppeteer";
 // import ppp from "puppeteer-core";
 import chromium from "chrome-aws-lambda";
-// import path from "path";
+import pathm from "path";
 
-const path = "./public/images";
+// const path = "./public/images";
 
 export type DouApp = {
   url: string;
@@ -65,7 +65,7 @@ const screenshot = async (app: string, url: string, resolution: Resolution = { w
   switch (app) {
     case apps.currendashcy.name:
       await new Promise((resolve) => setTimeout(resolve, 4000));
-      await page.screenshot({ path: `${path}/${app}.png` });
+      await page.screenshot({ path: `public/${app}.png` });
       break;
     case apps.xox.name:
       await page.evaluate(() => {
@@ -76,8 +76,10 @@ const screenshot = async (app: string, url: string, resolution: Resolution = { w
         });
       });
   }
-  await page.screenshot({ path: `../public/${app}.png` });
+  await page.screenshot({ path: `public/images/${app}.png` });
   await browser.close();
+  console.log("a", pathm.dirname("public"));
+  console.log("b", pathm.join(__dirname + "public/images/"));
 };
 
 export const getAllApps = async () => {
