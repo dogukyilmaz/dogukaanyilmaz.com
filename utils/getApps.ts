@@ -72,7 +72,8 @@ const screenshot = async (app: string, url: string, resolution: Resolution = { w
       });
   }
   await page.screenshot({
-    path: path.join(__dirname, `../public/images/${app}.png`),
+    // path: path.join(__dirname, `public/images/${app}.png`),
+    path: `public/images/${app}.png`,
     // `${path}/${app}.png`
   });
   await browser.close();
