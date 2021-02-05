@@ -11,6 +11,7 @@ const IconEnum = {
   theming: StarIcon,
   contact: LinkIcon,
   apps: SettingsIcon,
+  blog: EmailIcon,
 } as const;
 
 const Navbar = () => {
