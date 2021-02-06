@@ -1,7 +1,9 @@
 import { Box, Button, FormControl, FormHelperText, FormLabel, Input, Textarea, useToast } from "@chakra-ui/react";
+import axios from "axios";
 import Layout from "components/Layout";
 import useLocale from "hooks/useLocale";
 import React, { ChangeEvent, useState } from "react";
+import { createPost } from "services/blog.service";
 
 const NewPost = () => {
   const { t } = useLocale();
@@ -17,7 +19,13 @@ const NewPost = () => {
     });
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = async () => {
+    createPost({
+      authorId: 1,
+      title: form.title,
+      content: form.content,
+    });
+  };
 
   return (
     <Layout pageTitle={t("newpost")}>
