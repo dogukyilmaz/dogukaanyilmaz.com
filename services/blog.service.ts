@@ -8,13 +8,15 @@ export interface IPost {
 }
 
 export const getPosts = async () => {
-  const res = await fetch("http:localhost:3000/posts");
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post`);
+  const data = await res.json();
+  return data;
 };
 
 export const createPost = async (post: IPost) => {
   try {
-    const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post/new`, post);
-    console.log(res, "res");
+    const { data } = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post/new`, post);
+    return data;
   } catch (error) {
     console.log(error, "eeeeee");
   }
