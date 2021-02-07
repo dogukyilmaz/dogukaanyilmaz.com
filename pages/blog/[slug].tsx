@@ -19,9 +19,10 @@ import { createPost } from "services/blog.service";
 
 const Post = () => {
   const { t } = useLocale();
+  const router = useRouter();
   const {
     query: { slug },
-  } = useRouter();
+  } = router;
 
   const toast = useToast();
   const [form, setForm] = useState({ title: "", content: "" });
