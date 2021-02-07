@@ -58,7 +58,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   console.log(posts.data, "posts");
   return {
     props: {
-      posts: posts.data,
+      posts: posts.data || [],
     },
   };
 };
