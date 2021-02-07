@@ -2,11 +2,15 @@ import { Box, Button, FormControl, FormHelperText, FormLabel, Input, Textarea, u
 import axios from "axios";
 import Layout from "components/Layout";
 import useLocale from "hooks/useLocale";
+import { route } from "next/dist/next-server/server/router";
+import { useRouter } from "next/router";
 import React, { ChangeEvent, useState } from "react";
 import { createPost } from "services/blog.service";
 
 const NewPost = () => {
   const { t } = useLocale();
+  const router = useRouter();
+
   const toast = useToast();
   const [form, setForm] = useState({ title: "", content: "" });
   const [isSubmitted, setSubmitted] = useState(false);
@@ -20,10 +24,19 @@ const NewPost = () => {
   };
 
   const handleSubmit = async () => {
-    createPost({
+    const res = await createPost({
       authorId: 1,
       title: form.title,
       content: form.content,
+    });
+    router.back();
+    toast({
+      position: "top-right",
+      title: "Success",
+      description: res.message,
+      status: "success",
+      duration: 4000,
+      isClosable: true,
     });
   };
 
