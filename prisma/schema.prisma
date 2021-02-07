@@ -13,6 +13,7 @@ model Post {
   updatedAt DateTime @updatedAt
   title     String
   content   String?
+  slug      String   @default("qwr")
   published Boolean  @default(false)
   authorId  Int
   author    User     @relation(fields: [authorId], references: [id])

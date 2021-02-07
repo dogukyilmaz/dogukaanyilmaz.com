@@ -34,7 +34,11 @@ const Blog = ({ posts }: any) => {
             <Box d="block">
               <Heading mt={-5}>Posts</Heading>
               {posts.map((p: Post) => (
-                <Box key={p.id}></Box>
+                <Box key={p.id}>
+                  <Link href={`/blog/${encodeURIComponent(p.slug)}`}>
+                    <a>title: {p.title}</a>
+                  </Link>
+                </Box>
               ))}
             </Box>
           </Center>
