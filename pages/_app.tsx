@@ -15,12 +15,12 @@ function MyApp({ Component, pageProps, cookies }: AppProps | any) {
   );
 }
 
-MyApp.getInitialProps = ({ req }: any) => {
-  return {
-    // first time users will not have any cookies and you may not return
-    // undefined here, hence ?? is necessary
-    cookies: req?.headers.cookie ?? "",
-  };
-};
+// MyApp.getInitialProps = ({ req }: any) => {
+//   return {
+//     // first time users will not have any cookies and you may not return
+//     // undefined here, hence ?? is necessary
+//     cookies: req?.headers.cookie ?? "",
+//   };
+// };
 
 export default MyApp;
