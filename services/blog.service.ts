@@ -14,10 +14,6 @@ export const getPosts = async () => {
 };
 
 export const createPost = async (post: IPost) => {
-  try {
-    const { data } = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post/new`, post);
-    return data;
-  } catch (error) {
-    console.log(error, "eeeeee");
-  }
+  const { data } = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post/new`, post);
+  return data;
 };

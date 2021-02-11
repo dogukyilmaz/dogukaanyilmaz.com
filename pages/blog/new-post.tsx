@@ -30,14 +30,25 @@ const NewPost = () => {
       content: form.content,
     });
     router.back();
-    toast({
-      position: "top-right",
-      title: "Success",
-      description: res.message,
-      status: "success",
-      duration: 4000,
-      isClosable: true,
-    });
+    if (res.success) {
+      toast({
+        position: "top-right",
+        title: "Success",
+        description: res?.message,
+        status: "success",
+        duration: 4000,
+        isClosable: true,
+      });
+    } else {
+      toast({
+        position: "top-right",
+        title: "Error",
+        description: res?.message,
+        status: "error",
+        duration: 4000,
+        isClosable: true,
+      });
+    }
   };
 
   return (
