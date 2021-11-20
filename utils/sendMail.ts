@@ -10,11 +10,11 @@ export interface Options {
 
 export const sendEmail = async (options: Options) => {
   const transporter = nodemailer.createTransport({
-    host: process.env.NEXT_PUBLIC_SMTP_HOST,
-    port: process.env.NEXT_PUBLIC_SMTP_PORT,
+    host: process.env.SMTP_HOST,
+    port: process.env.SMTP_PORT,
     auth: {
-      user: process.env.NEXT_PUBLIC_SMTP_EMAIL,
-      pass: process.env.NEXT_PUBLIC_SMTP_PASSWORD,
+      user: process.env.SMTP_EMAIL,
+      pass: process.env.SMTP_PASSWORD,
     },
   } as any);
 
