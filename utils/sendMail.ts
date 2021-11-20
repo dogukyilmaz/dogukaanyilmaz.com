@@ -1,5 +1,5 @@
-import nodemailer from "nodemailer";
-import { mailTemplate } from "utils/mailTemplate";
+import nodemailer from 'nodemailer';
+import { mailTemplate } from 'utils/mailTemplate';
 
 export interface Options {
   senderMail?: string;
@@ -20,11 +20,11 @@ export const sendEmail = async (options: Options) => {
 
   const message = {
     from: `'${options.name}' <${options.senderMail}>`,
-    to: process.env.NEXT_PUBLIC_SMTP_EMAIL,
+    to: process.env.SMTP_RECEIVER_EMAIL,
     subject: options.subject,
     text: options.message,
     html: mailTemplate(options.subject, options.name, options.senderMail, options.message),
   };
   const info = await transporter.sendMail(message);
-  console.log("Message sent: %s", info.messageId);
+  console.log('Message sent: %s', info.messageId);
 };
