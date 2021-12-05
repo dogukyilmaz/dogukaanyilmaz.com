@@ -32,9 +32,8 @@ const useLocale = () => {
   const t = (key: string) => {
     let tempKey = '';
     if (!strings[locale!][key]) {
-      console.warn(`Translation '${key}' for locale '${locale}' not found.`);
+      // console.warn(`Translation '${key}' for locale '${locale}' not found.`);
       tempKey = capitalize(key);
-      console.log(capitalize(key));
     }
     return strings[locale!][key] || strings[defaultLocale!][key] || tempKey || '';
   };
