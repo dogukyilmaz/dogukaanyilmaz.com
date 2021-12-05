@@ -19,7 +19,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<any>) => {
       });
     } catch (err) {
       console.log(err);
-      res.status(500).json({ success: false, message: 'Bir hata olustu, lutfen daha sonra tekrar deneyiniz', error: err.message });
+      res.status(500).json({ success: false, message: 'Bir hata olustu, lutfen daha sonra tekrar deneyiniz', error: err });
     }
   } else {
     res.status(500).json({ success: false, message: 'Endpoint not provided!' });
