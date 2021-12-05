@@ -77,11 +77,11 @@ export const getAllApps = async () => {
     try {
       await screenshot(name, url);
       done.push({ url, name });
-      console.log(`${name}: ✅`);
+      // console.log(`${name}: ✅`);
     } catch (error) {
-      console.log(`${name}: ❌`);
+      // console.log(`${name}: ❌`);
       undone.push({ url, name });
-      console.log(error);
+      // console.log(error);
     }
   }
 

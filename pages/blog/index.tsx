@@ -55,7 +55,6 @@ const Blog = ({ posts }: any) => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const posts = await getPosts();
 
-  console.log(posts, 'posts');
   return {
     props: {
       posts: posts.data || [],
