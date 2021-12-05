@@ -1,11 +1,11 @@
-import { Box, Button, Center, Divider, Heading } from "@chakra-ui/react";
-import { Post } from "@prisma/client";
-import Layout from "components/Layout";
-import useLocale from "hooks/useLocale";
-import { GetServerSideProps } from "next";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { getPosts } from "services/blog.service";
+import { Box, Button, Center, Divider, Heading } from '@chakra-ui/react';
+import { Post } from '@prisma/client';
+import Layout from 'components/Layout';
+import useLocale from 'hooks/useLocale';
+import { GetServerSideProps } from 'next';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
+import { getPosts } from 'services/blog.service';
 
 interface BlogProps {
   posts: Post[];
@@ -16,10 +16,10 @@ const Blog = ({ posts }: any) => {
   const { t } = useLocale();
 
   return (
-    <Layout pageTitle={t("blog")}>
+    <Layout pageTitle={t('blog')}>
       <Box h="95vh">
         <Box d="flex" justifyContent="center" alignItems="center" mt={200}>
-          <h1>{t("blog")}</h1>
+          <h1>{t('blog')}</h1>
         </Box>
         <Box d="flex" justifyContent="center" alignItems="center">
           <Link href="/blog/new-post">
@@ -55,7 +55,7 @@ const Blog = ({ posts }: any) => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const posts = await getPosts();
 
-  console.log(posts, "posts");
+  console.log(posts, 'posts');
   return {
     props: {
       posts: posts.data || [],

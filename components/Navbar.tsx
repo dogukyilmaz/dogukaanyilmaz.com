@@ -1,9 +1,9 @@
-import { Box, Button, HStack, Tag, TagLabel, useColorMode } from "@chakra-ui/react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import useLocale from "hooks/useLocale";
-import { EmailIcon, LinkIcon, SpinnerIcon, StarIcon, SettingsIcon } from "@chakra-ui/icons";
-import { useEffect } from "react";
+import { Box, Button, HStack, Tag, TagLabel, useColorMode } from '@chakra-ui/react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import useLocale from 'hooks/useLocale';
+import { EmailIcon, LinkIcon, SpinnerIcon, StarIcon, SettingsIcon } from '@chakra-ui/icons';
+import { useEffect } from 'react';
 
 const IconEnum = {
   home: EmailIcon,
@@ -27,16 +27,16 @@ const Navbar = () => {
         <HStack spacing={4}>
           {Object.entries(IconEnum).map(([route, Icon]) => {
             return (
-              <Link href={`/${route === "home" ? "" : route}`} key={route}>
+              <Link href={`/${route === 'home' ? '' : route}`} key={route}>
                 <a>
                   <Tag
                     mt={1}
                     size="md"
                     variant="outline"
                     colorScheme="teal"
-                    color={pathname === `/${route === "home" ? "" : route}` ? "gray.200" : "inherit"}
-                    bgColor={pathname === `/${route === "home" ? "" : route}` ? "teal.500" : "inherit"}
-                    _hover={{ cursor: "pointer", background: "teal.800", color: "white" }}
+                    color={pathname === `/${route === 'home' ? '' : route}` ? 'gray.200' : 'inherit'}
+                    bgColor={pathname === `/${route === 'home' ? '' : route}` ? 'teal.500' : 'inherit'}
+                    _hover={{ cursor: 'pointer', background: 'teal.800', color: 'white' }}
                   >
                     <Icon mr={2} />
                     <TagLabel>{t(`${route}`)}</TagLabel>
@@ -47,9 +47,9 @@ const Navbar = () => {
           })}
         </HStack>
       </Box>
-      <span style={{ position: "absolute", right: 10, top: "50%" }}>
+      <span style={{ position: 'absolute', right: 10, top: '50%' }}>
         <Button colorScheme="blue" onClick={toggleColorMode}>
-          {colorMode === "light" ? "🌙" : "🌞"}
+          {colorMode === 'light' ? '🌙' : '🌞'}
         </Button>
       </span>
     </nav>

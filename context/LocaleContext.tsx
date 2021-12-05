@@ -1,5 +1,5 @@
-import React, { createContext, useEffect, useState, FC, useContext } from "react";
-import { useRouter } from "next/router";
+import React, { createContext, useEffect, useState, FC, useContext } from 'react';
+import { useRouter } from 'next/router';
 
 interface ContextProps {
   locale: any;
@@ -11,18 +11,18 @@ interface ProviderProps {
 }
 
 export const LocaleContext = createContext<ContextProps>({
-  locale: "en",
+  locale: 'en',
   setLocale: () => null,
 });
 
 export const LocaleProvider: FC<{ lang: any }> = ({ lang, children }) => {
-  const [locale, setLocale] = useState("en");
+  const [locale, setLocale] = useState('en');
 
   const router = useRouter();
   const { locale: l, locales, defaultLocale } = router;
 
   useEffect(() => {
-    setLocale(l || "en");
+    setLocale(l || 'en');
   }, [locale]);
   // const { query } = useRouter();
 
