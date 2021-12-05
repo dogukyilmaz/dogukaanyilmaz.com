@@ -1,4 +1,4 @@
-import puppeteer from "puppeteer";
+import puppeteer from 'puppeteer';
 
 export type DouApp = {
   url: string;
@@ -11,20 +11,20 @@ export type DouApps = {
 
 const apps: DouApps = {
   dogukaanyilmaz: {
-    url: "dogukaanyilmaz.com",
-    name: "dogukaanyilmaz",
+    url: 'dogukaanyilmaz.com',
+    name: 'dogukaanyilmaz',
   },
   dev: {
-    url: "dev.dogukaanyilmaz.com",
-    name: "dev",
+    url: 'dev.dogukaanyilmaz.com',
+    name: 'dev',
   },
   currendashcy: {
-    url: "currendashcy.dogukaanyilmaz.com",
-    name: "currendashcy",
+    url: 'currendashcy.dogukaanyilmaz.com',
+    name: 'currendashcy',
   },
   xox: {
-    url: "xox.dogukaanyilmaz.com",
-    name: "xox",
+    url: 'xox.dogukaanyilmaz.com',
+    name: 'xox',
   },
 };
 
@@ -43,7 +43,7 @@ const apps: DouApps = {
 type Resolution = { w: number; h: number; scale: number };
 
 const screenshot = async (app: string, url: string, resolution: Resolution = { w: 1920, h: 1080, scale: 1 }) => {
-  const browser = await puppeteer.launch({ args: ["--no-sandbox"] });
+  const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
   const page = await browser.newPage();
   await page.setViewport({
     width: resolution.w,
@@ -58,7 +58,7 @@ const screenshot = async (app: string, url: string, resolution: Resolution = { w
       break;
     case apps.xox.name:
       await page.evaluate(() => {
-        const els: NodeListOf<Element> = document.querySelectorAll(".cell");
+        const els: NodeListOf<Element> = document.querySelectorAll('.cell');
         [0, 1, 4, 6, 7].forEach((n) => {
           const elem = els[n] as HTMLElement;
           elem.click();

@@ -1,5 +1,5 @@
-import { Post } from "@prisma/client";
-import axios from "axios";
+import { Post } from '@prisma/client';
+import axios from 'axios';
 
 export interface IPost {
   authorId: number;

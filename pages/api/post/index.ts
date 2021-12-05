@@ -1,16 +1,16 @@
-import { PrismaClient, Post } from "@prisma/client";
-import type { NextApiRequest, NextApiResponse } from "next";
+import { PrismaClient, Post } from '@prisma/client';
+import type { NextApiRequest, NextApiResponse } from 'next';
 const prisma = new PrismaClient();
 
 export default async (req: NextApiRequest, res: NextApiResponse<any>) => {
-  if (req.method === "GET") {
+  if (req.method === 'GET') {
     try {
       const posts = await prisma.post.findMany({
         where: {
           // published: true,
         },
         orderBy: {
-          createdAt: "desc",
+          createdAt: 'desc',
         },
       });
       res.status(200).json({
@@ -19,11 +19,9 @@ export default async (req: NextApiRequest, res: NextApiResponse<any>) => {
       });
     } catch (err) {
       console.log(err);
-      res
-        .status(500)
-        .json({ success: false, message: "Bir hata olustu, lutfen daha sonra tekrar deneyiniz", error: err.message });
+      res.status(500).json({ success: false, message: 'Bir hata olustu, lutfen daha sonra tekrar deneyiniz', error: err.message });
     }
   } else {
-    res.status(500).json({ success: false, message: "Endpoint not provided!" });
+    res.status(500).json({ success: false, message: 'Endpoint not provided!' });
   }
 };

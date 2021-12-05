@@ -1,7 +1,7 @@
-import { ChangeEvent, SyntheticEvent, useEffect, useLayoutEffect, useRef, useState } from "react";
-import Layout from "components/Layout";
-import useLocale from "hooks/useLocale";
-import axios from "axios";
+import { ChangeEvent, SyntheticEvent, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import Layout from 'components/Layout';
+import useLocale from 'hooks/useLocale';
+import axios from 'axios';
 import {
   Box,
   Button,
@@ -27,14 +27,14 @@ import {
   useColorMode,
   useDisclosure,
   useToast,
-} from "@chakra-ui/react";
-import { EmailIcon, ArrowForwardIcon, CheckCircleIcon } from "@chakra-ui/icons";
+} from '@chakra-ui/react';
+import { EmailIcon, ArrowForwardIcon, CheckCircleIcon } from '@chakra-ui/icons';
 
 export default function Contact() {
   const { t } = useLocale();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [isSubmitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<any>([]);
   const [isRequested, setRequested] = useState(false);
@@ -52,27 +52,27 @@ export default function Contact() {
         const { data } = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/mail`, form);
         if (data.success) {
           toast({
-            position: "top-right",
+            position: 'top-right',
             title: data.message,
             description: (
               <span>
                 Thanks for reaching to me.<br></br> I will be responsing to you ASAP.
               </span>
             ),
-            status: "success",
+            status: 'success',
             duration: 4000,
             isClosable: true,
           });
           handlePostSubmit();
         } else {
-          throw new Error("Internal error. Try again later.");
+          throw new Error('Internal error. Try again later.');
         }
       } catch (error) {
         toast({
-          position: "top-right",
-          title: "Error",
-          description: "Please try again later.",
-          status: "warning",
+          position: 'top-right',
+          title: 'Error',
+          description: 'Please try again later.',
+          status: 'warning',
           duration: 4000,
           isClosable: true,
         });
@@ -83,13 +83,13 @@ export default function Contact() {
 
   const handlePostSubmit = () => {
     onClose();
-    setForm({ name: "", email: "", message: "" });
+    setForm({ name: '', email: '', message: '' });
     setRequested(true);
-    localStorage.setItem("contact-request-sent", "true");
+    localStorage.setItem('contact-request-sent', 'true');
   };
 
   const handlePreCheck = () => {
-    return localStorage.getItem("contact-request-sent") || null;
+    return localStorage.getItem('contact-request-sent') || null;
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -102,21 +102,21 @@ export default function Contact() {
   const validateField = () => {
     let error = [];
     if (!form.name) {
-      error.push({ key: "name", message: "Name is required!" });
+      error.push({ key: 'name', message: 'Name is required!' });
     }
     if (!form.email) {
-      error.push({ key: "email", message: "Email is required!" });
+      error.push({ key: 'email', message: 'Email is required!' });
     }
     if (!form.message) {
-      error.push({ key: "message", message: "Message is required!" });
+      error.push({ key: 'message', message: 'Message is required!' });
     }
     setErrors(error);
     error.length > 0 &&
       toast({
-        position: "top-right",
-        title: "Error",
-        description: "Fill all the required fields.",
-        status: "error",
+        position: 'top-right',
+        title: 'Error',
+        description: 'Fill all the required fields.',
+        status: 'error',
         duration: 4000,
         isClosable: true,
       });
@@ -124,7 +124,7 @@ export default function Contact() {
   };
 
   return (
-    <Layout pageTitle={t("contact")}>
+    <Layout pageTitle={t('contact')}>
       <Box d="flex" justifyContent="center" alignItems="center" h="95vh">
         <Stack direction="row" spacing={4}>
           {/* <Button leftIcon={<EmailIcon />} colorScheme="teal" variant="solid">
@@ -133,97 +133,86 @@ export default function Contact() {
           <Button
             rightIcon={isRequested ? <CheckCircleIcon /> : <ArrowForwardIcon />}
             colorScheme="teal"
-            variant={isRequested ? "solid" : "outline"}
+            variant={isRequested ? 'solid' : 'outline'}
             onClick={onOpen}
             disabled={isRequested}
           >
-            {isRequested ? t("requestSent") : t("contactMe")}
+            {isRequested ? t('requestSent') : t('contactMe')}
           </Button>
         </Stack>
       </Box>
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>{t("requestForm")}</ModalHeader>
+          <ModalHeader>{t('requestForm')}</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl id="name" isRequired>
-              <FormLabel>{t("name")}</FormLabel>
+              <FormLabel>{t('name')}</FormLabel>
               <Input
-                isInvalid={errors.find((item: any) => item.key === "name")}
+                isInvalid={errors.find((item: any) => item.key === 'name')}
                 focusBorderColor="teal.500"
                 value={form.name}
-                placeholder={t("name")}
+                placeholder={t('name')}
                 disabled={isSubmitted}
                 onChange={handleChange}
               />
-              <FormHelperText color="red.300">
-                {errors.find((item: any) => item.key === "name")?.message}
-              </FormHelperText>
+              <FormHelperText color="red.300">{errors.find((item: any) => item.key === 'name')?.message}</FormHelperText>
             </FormControl>
 
             <FormControl id="email" mt={4} isRequired>
-              <FormLabel>{t("email")}</FormLabel>
+              <FormLabel>{t('email')}</FormLabel>
               <Input
-                isInvalid={errors.find((item: any) => item.key === "email")}
+                isInvalid={errors.find((item: any) => item.key === 'email')}
                 focusBorderColor="teal.500"
                 value={form.email}
-                placeholder={t("email")}
+                placeholder={t('email')}
                 type="email"
                 disabled={isSubmitted}
                 onChange={handleChange}
               />
-              <FormHelperText color="red.300">
-                {errors.find((item: any) => item.key === "email")?.message}
-              </FormHelperText>
+              <FormHelperText color="red.300">{errors.find((item: any) => item.key === 'email')?.message}</FormHelperText>
             </FormControl>
 
             <FormControl id="message" mt={4} isRequired>
-              <FormLabel>{t("message")}</FormLabel>
+              <FormLabel>{t('message')}</FormLabel>
               <Textarea
-                isInvalid={errors.find((item: any) => item.key === "message")}
+                isInvalid={errors.find((item: any) => item.key === 'message')}
                 focusBorderColor="teal.500"
                 value={form.message}
-                placeholder={t("message")}
+                placeholder={t('message')}
                 disabled={isSubmitted}
                 size="sm"
                 resize="none"
                 onChange={handleChange}
-              />{" "}
-              <FormHelperText color="red.300">
-                {errors.find((item: any) => item.key === "message")?.message}
-              </FormHelperText>
+              />{' '}
+              <FormHelperText color="red.300">{errors.find((item: any) => item.key === 'message')?.message}</FormHelperText>
             </FormControl>
 
             <FormControl as="fieldset" id="emerg" mt={4} disabled={isSubmitted}>
-              <FormLabel as="legend">{t("priority")}</FormLabel>
+              <FormLabel as="legend">{t('priority')}</FormLabel>
               <RadioGroup defaultValue="low">
                 <HStack spacing="24px">
                   <Radio colorScheme="teal" value="low">
-                    {t("low")}
+                    {t('low')}
                   </Radio>
                   <Radio colorScheme="teal" value="medium">
-                    {t("medium")}
+                    {t('medium')}
                   </Radio>
                   <Radio colorScheme="teal" value="high">
-                    {t("high")}
+                    {t('high')}
                   </Radio>
                 </HStack>
               </RadioGroup>
-              <FormHelperText>{t("priorityMessage")}</FormHelperText>
+              <FormHelperText>{t('priorityMessage')}</FormHelperText>
             </FormControl>
           </ModalBody>
           <ModalFooter>
             <Button disabled={isSubmitted} onClick={onClose} colorScheme="red" mr={3} variant="ghost">
-              {t("cancel")}
+              {t('cancel')}
             </Button>
-            <Button
-              isLoading={isSubmitted}
-              colorScheme="teal"
-              variant={isSubmitted ? "solid" : "outline"}
-              onClick={handleSubmit}
-            >
-              {t("send")}
+            <Button isLoading={isSubmitted} colorScheme="teal" variant={isSubmitted ? 'solid' : 'outline'} onClick={handleSubmit}>
+              {t('send')}
             </Button>
           </ModalFooter>
         </ModalContent>
