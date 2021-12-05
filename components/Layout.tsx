@@ -17,7 +17,7 @@ const Layout: React.FC<LayoutProps> = ({ children, pageTitle = 'Hello, friend.' 
       <Flex flexDirection="column" h="100vh">
         <Box h={35} bg={colorMode === 'dark' ? 'inherit' : 'gray.200'}>
           <header>
-            <Navbar />
+            {/* <Navbar /> */}
             <LocaleSelector />
           </header>
         </Box>
