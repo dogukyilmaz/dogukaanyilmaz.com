@@ -1,21 +1,11 @@
-import {
-  Box,
-  Button,
-  FormControl,
-  FormHelperText,
-  FormLabel,
-  Heading,
-  Input,
-  Textarea,
-  useToast,
-} from "@chakra-ui/react";
-import axios from "axios";
-import Layout from "components/Layout";
-import useLocale from "hooks/useLocale";
-import { route } from "next/dist/next-server/server/router";
-import { useRouter } from "next/router";
-import React, { ChangeEvent, useState } from "react";
-import { createPost } from "services/blog.service";
+import { Box, Button, FormControl, FormHelperText, FormLabel, Heading, Input, Textarea, useToast } from '@chakra-ui/react';
+import axios from 'axios';
+import Layout from 'components/Layout';
+import useLocale from 'hooks/useLocale';
+import { route } from 'next/dist/next-server/server/router';
+import { useRouter } from 'next/router';
+import React, { ChangeEvent, useState } from 'react';
+import { createPost } from 'services/blog.service';
 
 const Post = () => {
   const { t } = useLocale();
@@ -25,7 +15,7 @@ const Post = () => {
   } = router;
 
   const toast = useToast();
-  const [form, setForm] = useState({ title: "", content: "" });
+  const [form, setForm] = useState({ title: '', content: '' });
   const [isSubmitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<any>([]);
 
@@ -54,7 +44,7 @@ const Post = () => {
   // };
 
   return (
-    <Layout pageTitle={t("newpost")}>
+    <Layout pageTitle={t('newpost')}>
       <Box d="flex" justifyContent="center" alignItems="center" h="95vh">
         <Heading>{slug}</Heading>
         {/* <Box w={500}>

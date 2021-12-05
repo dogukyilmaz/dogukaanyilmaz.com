@@ -1,28 +1,28 @@
-import strings from "../translations/strings";
-import { useRouter } from "next/router";
-import { useToast } from "@chakra-ui/react";
+import strings from '../translations/strings';
+import { useRouter } from 'next/router';
+import { useToast } from '@chakra-ui/react';
 
 export const languageNames: any = {
-  en: "English",
-  tr: "Türkçe",
-  de: "Deutsch",
-  fr: "Français",
-  ar: "عربى",
+  en: 'English',
+  tr: 'Türkçe',
+  de: 'Deutsch',
+  fr: 'Français',
+  ar: 'عربى',
 };
 
 export const languageKeys: any = {
-  en: "english",
-  tr: "turkish",
-  de: "german",
-  fr: "french",
-  ar: "arabic",
+  en: 'english',
+  tr: 'turkish',
+  de: 'german',
+  fr: 'french',
+  ar: 'arabic',
 };
 
 const capitalize = (s: String) => {
   return s
-    .split(" ")
-    .map(([first, ...rest]: String) => `${first.toUpperCase()}${rest.join("")}`)
-    .join(" ");
+    .split(' ')
+    .map(([first, ...rest]: String) => `${first.toUpperCase()}${rest.join('')}`)
+    .join(' ');
 };
 
 const useLocale = () => {
@@ -30,13 +30,12 @@ const useLocale = () => {
   const toast = useToast();
 
   const t = (key: string) => {
-    let tempKey = "";
+    let tempKey = '';
     if (!strings[locale!][key]) {
-      console.warn(`Translation '${key}' for locale '${locale}' not found.`);
+      // console.warn(`Translation '${key}' for locale '${locale}' not found.`);
       tempKey = capitalize(key);
-      console.log(capitalize(key));
     }
-    return strings[locale!][key] || strings[defaultLocale!][key] || tempKey || "";
+    return strings[locale!][key] || strings[defaultLocale!][key] || tempKey || '';
   };
 
   const setLocale = (lang: string) => {
@@ -44,10 +43,10 @@ const useLocale = () => {
       push(pathname, pathname, { locale: lang });
     } else {
       toast({
-        title: `${t("language")}: ${languageNames[lang]}`,
-        description: `${t(languageKeys[lang])} ${t("langNotFound")}`,
-        status: "info",
-        position: "top-left",
+        title: `${t('language')}: ${languageNames[lang]}`,
+        description: `${t(languageKeys[lang])} ${t('langNotFound')}`,
+        status: 'info',
+        position: 'top-left',
         duration: 3000,
         isClosable: true,
       });

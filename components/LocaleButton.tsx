@@ -1,5 +1,5 @@
-import { Badge, Box, useTheme } from "@chakra-ui/react";
-import useLocale from "hooks/useLocale";
+import { Badge, Box, useTheme } from '@chakra-ui/react';
+import useLocale from 'hooks/useLocale';
 
 interface LocaleButtonProps {
   colorScheme?: string;
@@ -25,8 +25,8 @@ const LocaleButton = ({ colorScheme, lang }: LocaleButtonProps) => {
       _hover={{ bg: `${colorScheme}.500`, color: `${colorScheme}.50` }}
       _active={{
         bg: `${colorScheme}.800`,
-        transform: "scale(0.98)",
-        outline: "none",
+        transform: 'scale(0.98)',
+        outline: 'none',
       }}
       onClick={() => setLocale(lang.toLowerCase())}
     >
